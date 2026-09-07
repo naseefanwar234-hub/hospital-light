@@ -3,7 +3,7 @@ import { Eye, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { AppLayout } from "@/components/AppLayout";
 import { Badge, Button, Card, Empty, Field, Input, Modal, SectionTitle, Select, Table } from "@/components/ui-kit";
-import { DEPARTMENTS, usePatients, type Patient } from "@/lib/store";
+import { DEPARTMENTS, DEFAULT_DEPT, usePatients, type Patient } from "@/lib/store";
 
 export const Route = createFileRoute("/patients")({
   component: Patients,
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/patients")({
   }),
 });
 
-const blank = { name: "", age: 30, gender: "Male", phone: "", department: DEPARTMENTS[0], address: "", bloodGroup: "O+" };
+const blank = { name: "", age: 30, gender: "Male", phone: "", department: DEFAULT_DEPT, address: "", bloodGroup: "O+" };
 
 function Patients() {
   const { items, add, update, remove } = usePatients();

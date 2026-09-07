@@ -3,7 +3,7 @@ import { Pencil, Phone, Plus, Search, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { AppLayout } from "@/components/AppLayout";
 import { Badge, Button, Card, Empty, Field, Input, Modal, SectionTitle, Select } from "@/components/ui-kit";
-import { DEPARTMENTS, useDoctors, type Doctor } from "@/lib/store";
+import { DEPARTMENTS, DEFAULT_DEPT, useDoctors, type Doctor } from "@/lib/store";
 
 export const Route = createFileRoute("/doctors")({
   component: Doctors,
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/doctors")({
 const blank: Omit<Doctor, "id"> = {
   name: "",
   specialization: "",
-  department: DEPARTMENTS[0],
+  department: DEFAULT_DEPT,
   experience: 5,
   availability: "Available",
   phone: "",

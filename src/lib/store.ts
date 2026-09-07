@@ -204,7 +204,8 @@ export const useMedicines = () => useCollection<Medicine>(KEYS.medicines, seedMe
 export const useBills = () => useCollection<Bill>(KEYS.bills, seedBills, "INV");
 export const useHospitalInfo = () => useStored<HospitalInfo>(KEYS.info, seedInfo);
 
-export const DEPARTMENTS = [
+export const DEFAULT_DEPT = "Cardiology";
+export const DEPARTMENTS: string[] = [
   "Cardiology",
   "Neurology",
   "Orthopedics",
