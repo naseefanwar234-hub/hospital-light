@@ -10,13 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppointmentsRouteImport } from './routes/appointments'
+import { Route as BillingRouteImport } from './routes/billing'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DoctorsRouteImport } from './routes/doctors'
 import { Route as PatientsRouteImport } from './routes/patients'
+import { Route as PharmacyRouteImport } from './routes/pharmacy'
+import { Route as SettingsRouteImport } from './routes/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppointmentsRoute = AppointmentsRouteImport.update({
+  id: '/appointments',
+  path: '/appointments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BillingRoute = BillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -34,39 +48,90 @@ const PatientsRoute = PatientsRouteImport.update({
   path: '/patients',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PharmacyRoute = PharmacyRouteImport.update({
+  id: '/pharmacy',
+  path: '/pharmacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/appointments': typeof AppointmentsRoute
+  '/billing': typeof BillingRoute
   '/dashboard': typeof DashboardRoute
   '/doctors': typeof DoctorsRoute
   '/patients': typeof PatientsRoute
+  '/pharmacy': typeof PharmacyRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/appointments': typeof AppointmentsRoute
+  '/billing': typeof BillingRoute
   '/dashboard': typeof DashboardRoute
   '/doctors': typeof DoctorsRoute
   '/patients': typeof PatientsRoute
+  '/pharmacy': typeof PharmacyRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/appointments': typeof AppointmentsRoute
+  '/billing': typeof BillingRoute
   '/dashboard': typeof DashboardRoute
   '/doctors': typeof DoctorsRoute
   '/patients': typeof PatientsRoute
+  '/pharmacy': typeof PharmacyRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/doctors' | '/patients'
+  fullPaths:
+    | '/'
+    | '/appointments'
+    | '/billing'
+    | '/dashboard'
+    | '/doctors'
+    | '/patients'
+    | '/pharmacy'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/doctors' | '/patients'
-  id: '__root__' | '/' | '/dashboard' | '/doctors' | '/patients'
+  to:
+    | '/'
+    | '/appointments'
+    | '/billing'
+    | '/dashboard'
+    | '/doctors'
+    | '/patients'
+    | '/pharmacy'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/appointments'
+    | '/billing'
+    | '/dashboard'
+    | '/doctors'
+    | '/patients'
+    | '/pharmacy'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppointmentsRoute: typeof AppointmentsRoute
+  BillingRoute: typeof BillingRoute
   DashboardRoute: typeof DashboardRoute
   DoctorsRoute: typeof DoctorsRoute
   PatientsRoute: typeof PatientsRoute
+  PharmacyRoute: typeof PharmacyRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/appointments': {
+      id: '/appointments'
+      path: '/appointments'
+      fullPath: '/appointments'
+      preLoaderRoute: typeof AppointmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/billing': {
+      id: '/billing'
+      path: '/billing'
+      fullPath: '/billing'
+      preLoaderRoute: typeof BillingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -99,14 +178,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PatientsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pharmacy': {
+      id: '/pharmacy'
+      path: '/pharmacy'
+      fullPath: '/pharmacy'
+      preLoaderRoute: typeof PharmacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppointmentsRoute: AppointmentsRoute,
+  BillingRoute: BillingRoute,
   DashboardRoute: DashboardRoute,
   DoctorsRoute: DoctorsRoute,
   PatientsRoute: PatientsRoute,
+  PharmacyRoute: PharmacyRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
